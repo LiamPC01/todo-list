@@ -1,0 +1,23 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "git subtree push --prefix dist origin gh-pages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/LiamPC01/toDoList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LiamPC01/toDoList/issues"
+  },
+  "homepage": "https://github.com/LiamPC01/toDoList#readme",
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.95.0"
+  }
+}
