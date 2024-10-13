@@ -2,14 +2,14 @@ body {
     margin: 0;
     font-size: 18px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    color: #202020;
 }
 
 #page {
     display: flex;
-}
-
-div {
-    /* border: solid black 1px; */
+    height: 100%;
+    position: relative;
 }
 
 #side-panel {
@@ -65,4 +65,60 @@ button {
     height: 25px;
     /* object-fit: contain; */
     border: solid black 2px;
+}
+
+#content {
+    width: 100%;
+    padding-top: 57px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    border: solid black 2px;
+}
+
+.content-title {
+    margin-top: 0px;
+}
+
+.list-div {
+    border: solid grey 2px;
+}
+
+#list-item-container {
+    width: 750px;
+}
+
+#list-item-container h2 {
+    padding-bottom: 20px;
+    font-size: 26px;
+}
+
+
+
+.list-item-title {
+    margin-bottom: 0px;
+    color: #202020;
+    font-size: 14px;
+}
+
+.list-item-description{
+    color: #666666;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    
+}
+
+.date {
+    font-size: 12px;
+    margin-top: 0px;
+}
+
+.due-today{
+    color: #058527;
+}
+
+.due-tomorrow{
+    color: #AD6200;
 }
