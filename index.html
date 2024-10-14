@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div id="page">
         <div id="side-panel">
@@ -26,30 +28,59 @@
                     <img id="profile-pic" src="./media/profile-pic-default.png">
                     <p class="side-panel-btn-label">Upcoming</p>
                 </button>
-                
-    
+
+
             </div>
         </div>
         <div id="content">
-            
+
             <div id="list-item-container">
                 <h2>Inbox</h2>
                 <div class="list-item">
-                    <p class="list-item-title">Task 1</p>
-                    <p class="list-item-description">whimmy wham wham wazzle</p>
-                    <p class=" date due-today">Today</p>
-                    <hr>
+
+                    <button class="check-btn">
+                        <img class="unchecked" src="./media/button-unchecked.svg">
+                        <img class="checked" src="./media/button-checked.svg">
+                    </button>
+
+                    <div class="list-item-text">
+                        <p class="list-item-title">Task 1</p>
+                        <p class="list-item-description">whimmy wham wham wazzle</p>
+                        <div class="date-container">
+                            <img src="./media/calendar-today.svg">
+                            <p class=" date due-today">Today</p>
+                        </div>
+
+                    </div>
+
                 </div>
+                <hr>
                 <div class="list-item">
-                    <p class="list-item-title">Task 2</p>
-                    <p class="list-item-description">mountain bears</p>
-                    <p class="date due-tomorrow">Tomorrow</p>
-                    <hr>
+                    <button class="check-btn">
+                        <img class="unchecked" src="./media/button-unchecked.svg">
+                        <img class="checked" src="./media/button-checked.svg">
+                    </button>
+                    <div class="list-item-text">
+                        <p class="list-item-title">Task 2</p>
+                        <!-- <p class="list-item-description">mountain bears</p> -->
+                        <div class="date-container">
+                            <img src="./media/calendar-future.svg">
+                            <p class="date due-tomorrow">Tomorrow</p>
+                        </div>
+
+                    </div>
                 </div>
+                <hr>
+                <button class="add-task-container">
+                    <img class="add-task-unhover" src="./media/add-task-unhover.svg">
+                    <img class="add-task-hover" src="./media/add-task-hover.svg">
+                    <p>Add Task</p>
+                </button>
             </div>
-    
+
         </div>
     </div>
 </body>
 <script src="./main.js"></script>
+
 </html>
