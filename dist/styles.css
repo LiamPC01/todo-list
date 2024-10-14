@@ -74,11 +74,38 @@ button {
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    border: solid black 2px;
+    /* border: solid black 2px; */
+}
+
+/* .checkbox {
+    border: solid grey 1px;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+}
+.checkbox:hover {
+    cursor: pointer;
+} */
+.unchecked {
+    opacity: 1;
+    position: absolute;
+}
+
+.checked {
+    opacity: 0;
+}
+
+.check-btn:hover .unchecked{
+    opacity: 0;
+    cursor: pointer;
+}
+.check-btn:hover .checked{
+    opacity: 1;
 }
 
 .content-title {
     margin-top: 0px;
+    margin-bottom: 5px;
 }
 
 .list-div {
@@ -94,7 +121,14 @@ button {
     font-size: 26px;
 }
 
+.list-item {
+    display: flex;
+    align-items: center;
+}
 
+.list-item-text {
+    padding-left: 10px;
+}
 
 .list-item-title {
     margin-bottom: 0px;
@@ -112,7 +146,16 @@ button {
 
 .date {
     font-size: 12px;
-    margin-top: 0px;
+    margin: 0px;
+    
+}
+
+.date-container {
+    display: flex;
+    align-items: center;
+    margin-left: -2px; /* to align nicely with description and title */
+    margin-top: 5px;
+    
 }
 
 .due-today{
@@ -121,4 +164,31 @@ button {
 
 .due-tomorrow{
     color: #AD6200;
+}
+
+.add-task-container {
+    display: flex;
+    align-items: center;
+}
+
+.add-task-container:hover {
+    cursor: pointer;
+}
+
+.add-task-container:hover .add-task-unhover{
+    opacity: 0;
+}
+
+.add-task-container:hover .add-task-hover{
+    opacity: 1;
+}
+
+.add-task-unhover {
+    position: absolute;
+}
+
+.add-task-hover{ 
+    opacity: 0;
+    width: 28px;
+    height: 28px;
 }
