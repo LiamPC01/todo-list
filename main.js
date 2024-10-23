@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _loadInbox_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./loadInbox.js */ \"./src/loadInbox.js\");\n\n\n(0,_loadInbox_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n\n//# sourceURL=webpack://todolist/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _loadInbox_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./loadInbox.js */ \"./src/loadInbox.js\");\n/* harmony import */ var _loadToday_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loadToday.js */ \"./src/loadToday.js\");\n/* harmony import */ var _loadUpcoming_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loadUpcoming.js */ \"./src/loadUpcoming.js\");\n\n\n\n\n\n\n\n(0,_loadInbox_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\nconst inboxBtn = document.getElementById('inbox-btn');\ninboxBtn.addEventListener('click', _loadInbox_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\nconst todayBtn = document.getElementById('today-btn');\ntodayBtn.addEventListener('click', _loadToday_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\nconst upcomingBtn = document.getElementById(\"upcoming-btn\");\nupcomingBtn.addEventListener('click',_loadUpcoming_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\n\n\n//# sourceURL=webpack://todolist/./src/index.js?");
 
 /***/ }),
 
@@ -26,7 +26,27 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _loa
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction loadInbox() {\n    //  //clear current content\n    //  document.getElementById('content').innerHTML = \"\";\n    //  const contentElement = document.getElementById(\"content\");\n\n    //  const listDiv = document.createElement(\"div\");\n    //  listDiv.classList = \"list-div\";\n    //  contentElement.appendChild(listDiv)\n \n    //  //create headline\n    //  const headline = document.createElement(\"h2\");\n    //  const headText = document.createTextNode(\"Inbox\");\n    //  headline.classList = \"content-title\";\n    //  headline.appendChild(headText);\n    //  listDiv.appendChild(headline);\n \n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadInbox);\n\n//# sourceURL=webpack://todolist/./src/loadInbox.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction addTaskForm() {\n    console.log(\"open dialog/form\");\n    document.getElementById(\"add-task-dialog\").open = true;\n}\n\nfunction cancelAddTask() {\n    document.getElementById(\"add-task-dialog\").open = false;\n}\n\nfunction loadInbox() {\n    console.log(\"loadInbox called\");\n    const addTaskBtn = document.getElementById(\"add-task-btn\");\n    addTaskBtn.addEventListener(\"click\", addTaskForm);\n    const cancelTaskBtn = document.getElementById(\"cancel-add-task-btn\");\n    cancelTaskBtn.addEventListener(\"click\", cancelAddTask);\n   \n\n    \n \n}\n\n\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadInbox);\n\n//# sourceURL=webpack://todolist/./src/loadInbox.js?");
+
+/***/ }),
+
+/***/ "./src/loadToday.js":
+/*!**************************!*\
+  !*** ./src/loadToday.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction loadToday() {\nconsole.log(\"loadToday called\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadToday);\n\n//# sourceURL=webpack://todolist/./src/loadToday.js?");
+
+/***/ }),
+
+/***/ "./src/loadUpcoming.js":
+/*!*****************************!*\
+  !*** ./src/loadUpcoming.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction loadUpcoming() {\nconsole.log(\"loadUpcoming called\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadUpcoming);\n\n//# sourceURL=webpack://todolist/./src/loadUpcoming.js?");
 
 /***/ })
 
