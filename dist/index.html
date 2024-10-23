@@ -16,16 +16,16 @@
                 <p id="side-panel-header-username"><b>liam14mitchell</b></p>
             </div>
             <div id="side-panel-btns-container">
-                <button class="side-panel-btn">
-                    <img id="profile-pic" src="./media/profile-pic-default.png">
+                <button id="inbox-btn" class="side-panel-btn">
+                    <img src="./media/inbox-unselected.svg">
                     <p class="side-panel-btn-label">Inbox</p>
                 </button>
-                <button class="side-panel-btn">
-                    <img id="profile-pic" src="./media/profile-pic-default.png">
+                <button id="today-btn" class="side-panel-btn">
+                    <img src="./media/calendar-today-unselected.svg">
                     <p class="side-panel-btn-label">Today</p>
                 </button>
-                <button class="side-panel-btn">
-                    <img id="profile-pic" src="./media/profile-pic-default.png">
+                <button id="upcoming-btn" class="side-panel-btn">
+                    <img src="./media/upcoming-unselected.svg">
                     <p class="side-panel-btn-label">Upcoming</p>
                 </button>
 
@@ -62,7 +62,6 @@
                     </button>
                     <div class="list-item-text">
                         <p class="list-item-title">Task 2</p>
-                        <!-- <p class="list-item-description">mountain bears</p> -->
                         <div class="date-container">
                             <img src="./media/calendar-future.svg">
                             <p class="date due-tomorrow">Tomorrow</p>
@@ -71,16 +70,44 @@
                     </div>
                 </div>
                 <hr>
-                <button class="add-task-container">
-                    <img class="add-task-unhover" src="./media/add-task-unhover.svg">
-                    <img class="add-task-hover" src="./media/add-task-hover.svg">
-                    <p>Add Task</p>
-                </button>
+
             </div>
+            <button id="add-task-btn">
+                <img class="add-task-unhover" src="./media/add-task-unhover.svg">
+                <img class="add-task-hover" src="./media/add-task-hover.svg">
+                <p>Add task</p>
+            </button>
+
 
         </div>
+        <dialog  id="add-task-dialog">
+            <div id="add-task-window">
+                <form id="add-task-form">
+                    <div id="add-task-content">
+                        <input required type="text" placeholder="Task name" id="form-task-name">
+                        <input type="text" placeholder="Description" id="form-task-description">
+                        <div id="date-container">
+                            <input type="date" placeholder="date" id="form-task-date">
+                        </div>
+                    </div>
+                    <div id="add-task-footer">
+                        <div id="project-selection">
+                            <!-- project selection -->
+                        </div>
+                        <div id="submit-btn-container">
+                            <button type="button" id="cancel-add-task-btn">Cancel</button>
+                            <input type="submit" value="Add task" id="submit-add-task-btn"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </dialog>
     </div>
+
+    <script src="./main.js"></script>
 </body>
-<script src="./main.js"></script>
+
 
 </html>
