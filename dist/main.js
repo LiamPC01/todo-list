@@ -10,43 +10,43 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/dom.js":
+/*!********************!*\
+  !*** ./src/dom.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _project_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./project.js */ \"./src/project.js\");\n/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.js */ \"./src/index.js\");\n\n\n\n//Set up event listeners\n\nfunction setUpEventListeners() {\n    const addTaskBtn = document.getElementById(\"add-task-btn\");\n    addTaskBtn.addEventListener(\"click\", openAddTaskForm);\n    const cancelTaskBtn = document.getElementById(\"cancel-add-task-btn\");\n    cancelTaskBtn.addEventListener(\"click\", cancelAddTask);\n    const submitTaskBtn = document.getElementById(\"submit-add-task-btn\");\n    submitTaskBtn.addEventListener(\"click\", handleCreateTodo);\n}\n\nfunction openAddTaskForm() {\n    console.log(\"open dialog/form\");\n    document.getElementById(\"add-task-dialog\").open = true;\n}\n\nfunction cancelAddTask() {\n    document.getElementById(\"add-task-dialog\").open = false;\n}\n\nfunction handleCreateTodo() {\n    _index_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].createTodo();\n    //close and reset the form\n    document.getElementById(\"add-task-dialog\").open = false;\n    //render the page to show new task\n    \n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setUpEventListeners);\n\n\n//# sourceURL=webpack://todolist/./src/dom.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _loadInbox_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./loadInbox.js */ \"./src/loadInbox.js\");\n/* harmony import */ var _loadToday_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loadToday.js */ \"./src/loadToday.js\");\n/* harmony import */ var _loadUpcoming_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./loadUpcoming.js */ \"./src/loadUpcoming.js\");\n\n\n\n\n\n\n\n(0,_loadInbox_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\nconst inboxBtn = document.getElementById('inbox-btn');\ninboxBtn.addEventListener('click', _loadInbox_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\nconst todayBtn = document.getElementById('today-btn');\ntodayBtn.addEventListener('click', _loadToday_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]);\n\nconst upcomingBtn = document.getElementById(\"upcoming-btn\");\nupcomingBtn.addEventListener('click',_loadUpcoming_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\n\n\n//# sourceURL=webpack://todolist/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom.js */ \"./src/dom.js\");\n/* harmony import */ var _project_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project.js */ \"./src/project.js\");\n\n\n\n\n//create project PROJECT MODULE\nconst defaultProject = new _project_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](\"defaultProject\");\n\n//Render the page DOM MODULE \n\n//Add event listeners DOM MODULE\n(0,_dom_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n//create Todo TODO MODULE\n\n\n//create project manager and switch projects PROJECT MANAGER MODULE\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (defaultProject);\n\n\n//# sourceURL=webpack://todolist/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/loadInbox.js":
-/*!**************************!*\
-  !*** ./src/loadInbox.js ***!
-  \**************************/
+/***/ "./src/project.js":
+/*!************************!*\
+  !*** ./src/project.js ***!
+  \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction addTaskForm() {\n    console.log(\"open dialog/form\");\n    document.getElementById(\"add-task-dialog\").open = true;\n}\n\nfunction cancelAddTask() {\n    document.getElementById(\"add-task-dialog\").open = false;\n}\n\nfunction loadInbox() {\n    console.log(\"loadInbox called\");\n    const addTaskBtn = document.getElementById(\"add-task-btn\");\n    addTaskBtn.addEventListener(\"click\", addTaskForm);\n    const cancelTaskBtn = document.getElementById(\"cancel-add-task-btn\");\n    cancelTaskBtn.addEventListener(\"click\", cancelAddTask);\n   \n\n    \n \n}\n\n\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadInbox);\n\n//# sourceURL=webpack://todolist/./src/loadInbox.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _todo_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo.js */ \"./src/todo.js\");\n\n\n\nclass Project {\n    constructor(projectName) {\n        this.projectName = projectName;\n        this.todoArr = [];\n    }\n\n    createTodo() {\n        //get all data from form\n        const taskName = document.getElementById(\"form-task-name\");\n        const taskDesc = document.getElementById(\"form-task-description\");\n        const taskDueDate = document.getElementById(\"form-task-date\");\n        //create todo class with data\n        const todo = new _todo_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](taskName, taskDesc, taskDueDate);\n        //push object to todoArr\n        this.todoArr.push(todo);\n        console.log(todo.taskName.value);\n    }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Project);\n\n//# sourceURL=webpack://todolist/./src/project.js?");
 
 /***/ }),
 
-/***/ "./src/loadToday.js":
-/*!**************************!*\
-  !*** ./src/loadToday.js ***!
-  \**************************/
+/***/ "./src/todo.js":
+/*!*********************!*\
+  !*** ./src/todo.js ***!
+  \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction loadToday() {\nconsole.log(\"loadToday called\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadToday);\n\n//# sourceURL=webpack://todolist/./src/loadToday.js?");
-
-/***/ }),
-
-/***/ "./src/loadUpcoming.js":
-/*!*****************************!*\
-  !*** ./src/loadUpcoming.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction loadUpcoming() {\nconsole.log(\"loadUpcoming called\");\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (loadUpcoming);\n\n//# sourceURL=webpack://todolist/./src/loadUpcoming.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass ToDo {\n    constructor(taskName, taskDesc, dueDate) {\n        this.taskName = taskName;\n        this.taskDesc = taskDesc;\n        this.dueDate = dueDate;\n    }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ToDo);\n\n//# sourceURL=webpack://todolist/./src/todo.js?");
 
 /***/ })
 
@@ -109,7 +109,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()
