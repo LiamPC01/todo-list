@@ -82,7 +82,8 @@
         </div>
         <dialog  id="add-task-dialog">
             <div id="add-task-window">
-                <form id="add-task-form">
+                <form id="add-task-form" onsubmit="return false"> 
+                    <!-- return false to stop page refreshing -->
                     <div id="add-task-content">
                         <input required type="text" placeholder="Task name" id="form-task-name">
                         <input type="text" placeholder="Description" id="form-task-description">
@@ -96,7 +97,7 @@
                         </div>
                         <div id="submit-btn-container">
                             <button type="button" id="cancel-add-task-btn">Cancel</button>
-                            <input type="button" value="Add task" id="submit-add-task-btn"></button> 
+                            <input type="submit" value="Add task" id="submit-add-task-btn"></button> 
                             <!-- change to button ratehr than submit  -->
                         </div>
                     </div>
