@@ -82,10 +82,11 @@
         </div>
         <dialog  id="add-task-dialog">
             <div id="add-task-window">
-                <form id="add-task-form" onsubmit="return false"> 
+                <form id="add-task-form" onsubmit="return false">
+                    <!-- onsubmit="handleSubmit(event)" -->
                     <!-- return false to stop page refreshing -->
                     <div id="add-task-content">
-                        <input required type="text" placeholder="Task name" id="form-task-name">
+                        <input required type="text" name="task-name" placeholder="Task name" id="form-task-name">
                         <input type="text" placeholder="Description" id="form-task-description">
                         <div id="date-container">
                             <input type="date" placeholder="date" id="form-task-date">
@@ -97,14 +98,12 @@
                         </div>
                         <div id="submit-btn-container">
                             <button type="button" id="cancel-add-task-btn">Cancel</button>
-                            <input type="submit" value="Add task" id="submit-add-task-btn"></button> 
-                            <!-- change to button ratehr than submit  -->
+                            <button type="submit" id="submit-add-task-btn">Add task</button> 
+                            <!-- change to button rather than submit  -->
                         </div>
                     </div>
                 </form>
             </div>
-
-
         </dialog>
     </div>
 

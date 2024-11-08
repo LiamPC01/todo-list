@@ -1,6 +1,6 @@
 import setUpEventListeners from './dom.js'
 import Project from './project.js'
-
+// import handleSubmit from './dom.js'
 
 //create project PROJECT MODULE
 const defaultProject = new Project("defaultProject");
@@ -11,7 +11,6 @@ const defaultProject = new Project("defaultProject");
 setUpEventListeners();
 
 //create Todo TODO MODULE
-
 
 //create project manager and switch projects PROJECT MANAGER MODULE
 

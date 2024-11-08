@@ -1,4 +1,3 @@
-import Project from './project.js'
 import defaultProject from './index.js'
 
 //Set up event listeners
@@ -8,8 +7,8 @@ function setUpEventListeners() {
     addTaskBtn.addEventListener("click", openAddTaskForm);
     const cancelTaskBtn = document.getElementById("cancel-add-task-btn");
     cancelTaskBtn.addEventListener("click", cancelAddTask);
-    const submitTaskBtn = document.getElementById("submit-add-task-btn");
-    submitTaskBtn.addEventListener("click", handleCreateTodo);
+    const form = document.getElementById("add-task-form");
+    form.addEventListener("submit", handleSubmit);
 }
 
 function openAddTaskForm() {
@@ -22,13 +21,25 @@ function cancelAddTask() {
     document.getElementById("add-task-form").reset();
 }
 
-function handleCreateTodo() {
-    defaultProject.createTodo();
+function handleSubmit(event) {
+    console.log("handleSubmit");
+
+    const taskName = document.getElementById("form-task-name").value;
+    const taskDesc = document.getElementById("form-task-description").value;
+    const taskDueDate = document.getElementById("form-task-date").value;
+
+    defaultProject.createTodo(taskName, taskDesc, taskDueDate);
     //close and reset the form
-    document.getElementById("add-task-dialog").open = false;
+    
+
     //render the page to show new task
     renderPage();
-    
+    document.getElementById("add-task-form").reset();
+    document.getElementById("add-task-dialog").open = false;
+
+
+
+
 }
 
 function renderPage() {
@@ -39,29 +50,16 @@ function renderPage() {
 
     console.log("renderPage");
 
+    const pageHeader = document.createElement("h2");
+    pageHeader.textContent = "Inbox"; //or whatever project is selected
+    listItemContainer.appendChild(pageHeader);
+
     // <div class="list-item">
-
-    //                 <button class="check-btn">
-    //                     <img class="unchecked" src="./media/button-unchecked.svg">
-    //                     <img class="checked" src="./media/button-checked.svg">
-    //                 </button>
-
-    //                 <div class="list-item-text">
-    //                     <p class="list-item-title">Task 1</p>
-    //                     <p class="list-item-description">whimmy wham wham wazzle</p>
-    //                     <div class="date-container">
-    //                         <img src="./media/calendar-today.svg">
-    //                         <p class=" date due-today">Today</p>
-    //                     </div>
-
-    //                 </div>
-
-    //             </div>
 
     //loop through default projects todoArr
     //create html elements with the data in the todoArr
 
-    for(let i = 0; i < defaultProject.todoArr.length; i++){
+    for (let i = 0; i < defaultProject.todoArr.length; i++) {
 
         const listItemDiv = document.createElement("div");
         listItemDiv.classList = "list-item";
@@ -86,13 +84,13 @@ function renderPage() {
 
         const listItemTitle = document.createElement("p");
         listItemTitle.classList = "list-item-title";
-        const listItemTitleNode = document.createTextNode(defaultProject.todoArr[i].taskName.value);
+        const listItemTitleNode = document.createTextNode(defaultProject.todoArr[i].taskName);
         listItemTitle.appendChild(listItemTitleNode);
         listItemTextDiv.appendChild(listItemTitle);
 
         const listItemDesc = document.createElement("p");
         listItemDesc.classList = "list-item-description";
-        const listItemDescNode = document.createTextNode(defaultProject.todoArr[i].taskDesc.value);
+        const listItemDescNode = document.createTextNode(defaultProject.todoArr[i].taskDesc);
         listItemDesc.appendChild(listItemDescNode);
         listItemTextDiv.appendChild(listItemDesc);
 
@@ -104,28 +102,27 @@ function renderPage() {
         dateImg.src = "./media/calendar-today.svg";
         dateContainer.appendChild(dateImg);
 
+
+        //Date
         const dateText = document.createElement("p");
         dateText.classList = "date due-today";
-        const dateTextNode = document.createTextNode("Today maybe");
+        const dueDate = defaultProject.todoArr[i].taskDueDate;
+        console.log(dueDate);
+        //convert task date from 2024-11-16 to month day like Nov 16
+        
+        const dateTextNode = document.createTextNode(defaultProject.todoArr[i].taskDueDate);
         dateText.appendChild(dateTextNode);
         dateContainer.appendChild(dateText);
+
+
 
         listItemContainer.appendChild(listItemDiv);
 
         const horizRule = document.createElement("hr");
         listItemContainer.appendChild(horizRule);
 
+        // console.log("todoArr[" + i + "]" + defaultProject.todoArr[i].taskName.value);
 
-
-
-
-
-
-        
-
-
-
-        
     }
 
 }
