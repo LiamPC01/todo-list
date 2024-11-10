@@ -1,5 +1,8 @@
 import defaultProject from './index.js'
 
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 //Set up event listeners
 
 function setUpEventListeners() {
@@ -12,7 +15,6 @@ function setUpEventListeners() {
 }
 
 function openAddTaskForm() {
-    console.log("open dialog/form");
     document.getElementById("add-task-dialog").open = true;
 }
 
@@ -22,7 +24,6 @@ function cancelAddTask() {
 }
 
 function handleSubmit(event) {
-    console.log("handleSubmit");
 
     const taskName = document.getElementById("form-task-name").value;
     const taskDesc = document.getElementById("form-task-description").value;
@@ -30,16 +31,33 @@ function handleSubmit(event) {
 
     defaultProject.createTodo(taskName, taskDesc, taskDueDate);
     //close and reset the form
-    
+
 
     //render the page to show new task
     renderPage();
     document.getElementById("add-task-form").reset();
     document.getElementById("add-task-dialog").open = false;
 
+}
 
+function formatDate(taskDueDate) {
+    //format user inputted date in month day format 
+    const day = taskDueDate.substr(8, 2);
+    const monthNum = taskDueDate.substr(5, 2);
+    const month = months[monthNum - 1];
+    const formattedDate = month + " " + day;
+    return formattedDate;
+}
 
+function getTodaysDate() {
+    const date = new Date();
 
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    let fullDate = `${year}-${month}-${day}`;
+    return fullDate;
 }
 
 function renderPage() {
@@ -48,7 +66,6 @@ function renderPage() {
     //clear the page
     listItemContainer.innerHTML = "";
 
-    console.log("renderPage");
 
     const pageHeader = document.createElement("h2");
     pageHeader.textContent = "Inbox"; //or whatever project is selected
@@ -107,12 +124,19 @@ function renderPage() {
         const dateText = document.createElement("p");
         dateText.classList = "date due-today";
         const dueDate = defaultProject.todoArr[i].taskDueDate;
-        console.log(dueDate);
-        //convert task date from 2024-11-16 to month day like Nov 16
-        
-        const dateTextNode = document.createTextNode(defaultProject.todoArr[i].taskDueDate);
-        dateText.appendChild(dateTextNode);
-        dateContainer.appendChild(dateText);
+
+        if (getTodaysDate() == dueDate) {
+            //dateTextNode == "today"
+            const dateTextNode = document.createTextNode("Today");
+            dateText.appendChild(dateTextNode);
+            dateContainer.appendChild(dateText);
+        }
+        else {
+            //dateTextNode == formattedDate / nice looking date
+            const dateTextNode = document.createTextNode(formatDate(defaultProject.todoArr[i].taskDueDate));
+            dateText.appendChild(dateTextNode);
+            dateContainer.appendChild(dateText);
+        }
 
 
 

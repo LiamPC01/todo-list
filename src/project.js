@@ -14,14 +14,10 @@ class Project {
         //check form is valid
         if (taskName.value != "") {
 
-            //format dueDate 
-            const day = taskDueDate.substr(8, 2);
-            const monthNum = taskDueDate.substr(5, 2);
-            const month = months[monthNum - 1];
-            const formatedDate = month + " " + day;
+            
 
             //create todo class with data
-            const todo = new ToDo(taskName, taskDesc, formatedDate);
+            const todo = new ToDo(taskName, taskDesc, taskDueDate);
 
             //push object to todoArr
             this.todoArr.push(todo);
