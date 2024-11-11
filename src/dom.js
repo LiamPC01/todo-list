@@ -57,6 +57,19 @@ function getTodaysDate() {
     let year = date.getFullYear();
 
     let fullDate = `${year}-${month}-${day}`;
+    console.log("Todays date: " + fullDate);
+    return fullDate;
+}
+
+function getTomorrowsDate() {
+    const date = new Date();
+
+    let day = date.getDate() + 1;
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    let fullDate = `${year}-${month}-${day}`;
+    console.log("Tomorrow date: " + fullDate);
     return fullDate;
 }
 
@@ -125,9 +138,13 @@ function renderPage() {
         dateText.classList = "date due-today";
         const dueDate = defaultProject.todoArr[i].taskDueDate;
 
-        if (getTodaysDate() == dueDate) {
+        if (getTodaysDate() == dueDate || !dueDate) {
             //dateTextNode == "today"
             const dateTextNode = document.createTextNode("Today");
+            dateText.appendChild(dateTextNode);
+            dateContainer.appendChild(dateText);
+        } else if (getTomorrowsDate() == dueDate) {
+            const dateTextNode = document.createTextNode("Tomorrow");
             dateText.appendChild(dateTextNode);
             dateContainer.appendChild(dateText);
         }
