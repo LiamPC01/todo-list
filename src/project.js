@@ -1,6 +1,6 @@
 import ToDo from './todo.js'
-const months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+import { getTodaysDate } from './utils.js';
+
 
 
 class Project {
@@ -14,7 +14,9 @@ class Project {
         //check form is valid
         if (taskName.value != "") {
 
-            
+            if(!taskDueDate){
+                taskDueDate = getTodaysDate();
+            }
 
             //create todo class with data
             const todo = new ToDo(taskName, taskDesc, taskDueDate);
@@ -23,14 +25,9 @@ class Project {
             this.todoArr.push(todo);
             // console.log(todo.taskName);
             // console.log(todo.taskDesc);
-            // console.log(todo.taskDueDate);
+            console.log(todo.taskDueDate);
         }
 
-        // //return full list of todos in project
-        // for(let i = 0; i < this.todoArr.length; i++)
-        // {
-        //     console.log(this.todoArr[i]);
-        // }
     }
 
 }

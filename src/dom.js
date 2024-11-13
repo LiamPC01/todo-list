@@ -1,4 +1,5 @@
 import defaultProject from './index.js'
+import { getTodaysDate, getTomorrowsDate, formatDate } from './utils.js';
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -40,37 +41,12 @@ function handleSubmit(event) {
 
 }
 
-function formatDate(taskDueDate) {
-    //format user inputted date in month day format 
-    const day = taskDueDate.substr(8, 2);
-    const monthNum = taskDueDate.substr(5, 2);
-    const month = months[monthNum - 1];
-    const formattedDate = month + " " + day;
-    return formattedDate;
-}
 
-function getTodaysDate() {
-    const date = new Date();
+function completeToDo(i) {
+    console.log(i);
+    defaultProject.todoArr.splice(i, 1);
+    renderPage();
 
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-
-    let fullDate = `${year}-${month}-${day}`;
-    console.log("Todays date: " + fullDate);
-    return fullDate;
-}
-
-function getTomorrowsDate() {
-    const date = new Date();
-
-    let day = date.getDate() + 1;
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-
-    let fullDate = `${year}-${month}-${day}`;
-    console.log("Tomorrow date: " + fullDate);
-    return fullDate;
 }
 
 function renderPage() {
@@ -106,7 +82,10 @@ function renderPage() {
         const checkedImg = document.createElement("img");
         checkedImg.src = "./media/button-checked.svg";
         checkedImg.classList = "checked";
+        checkedImg.id = "checkbox" + i;
         listItemBtn.appendChild(checkedImg);
+        //ADD EVENT LISTENER TO BUTTON
+        listItemBtn.addEventListener("click", () => completeToDo(i));
 
         const listItemTextDiv = document.createElement("div");
         listItemTextDiv.classList = "list-item-text";
@@ -128,31 +107,47 @@ function renderPage() {
         dateContainer.classList = "date-container";
         listItemTextDiv.appendChild(dateContainer);
 
-        const dateImg = document.createElement("img");
-        dateImg.src = "./media/calendar-today.svg";
-        dateContainer.appendChild(dateImg);
+
+
 
 
         //Date
+
+
         const dateText = document.createElement("p");
-        dateText.classList = "date due-today";
+        dateText.classList = "date";
         const dueDate = defaultProject.todoArr[i].taskDueDate;
 
-        if (getTodaysDate() == dueDate || !dueDate) {
+        if (getTodaysDate() == dueDate) {
+            const dateImg = document.createElement("img");
+            dateImg.src = "./media/calendar-today.svg";
+
+            dateContainer.appendChild(dateImg);
             //dateTextNode == "today"
             const dateTextNode = document.createTextNode("Today");
             dateText.appendChild(dateTextNode);
             dateContainer.appendChild(dateText);
+            dateText.classList = "date due-today";
         } else if (getTomorrowsDate() == dueDate) {
+            const dateImg = document.createElement("img");
+            dateImg.src = "./media/calendar-future.svg";
+            dateContainer.appendChild(dateImg);
+
             const dateTextNode = document.createTextNode("Tomorrow");
             dateText.appendChild(dateTextNode);
             dateContainer.appendChild(dateText);
+            dateText.classList = "date due-tomorrow";
         }
         else {
-            //dateTextNode == formattedDate / nice looking date
+            const dateImg = document.createElement("img");
+            dateImg.src = "./media/calendar-future.svg";
+            dateContainer.appendChild(dateImg);
+
             const dateTextNode = document.createTextNode(formatDate(defaultProject.todoArr[i].taskDueDate));
             dateText.appendChild(dateTextNode);
             dateContainer.appendChild(dateText);
+            dateText.classList = "date due-tomorrow";
+
         }
 
 

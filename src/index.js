@@ -7,6 +7,7 @@ const defaultProject = new Project("defaultProject");
 
 //Render the page DOM MODULE 
 
+
 //Add event listeners DOM MODULE
 setUpEventListeners();
 
