@@ -1,9 +1,6 @@
 import defaultProject from './index.js'
 import { getTodaysDate, getTomorrowsDate, formatDate } from './utils.js';
 
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
 //Set up event listeners
 
 function setUpEventListeners() {
@@ -33,7 +30,6 @@ function handleSubmit(event) {
     defaultProject.createTodo(taskName, taskDesc, taskDueDate);
     //close and reset the form
 
-
     //render the page to show new task
     renderPage();
     document.getElementById("add-task-form").reset();
@@ -41,12 +37,9 @@ function handleSubmit(event) {
 
 }
 
-
 function completeToDo(i) {
-    console.log(i);
     defaultProject.todoArr.splice(i, 1);
     renderPage();
-
 }
 
 function renderPage() {
@@ -84,7 +77,6 @@ function renderPage() {
         checkedImg.classList = "checked";
         checkedImg.id = "checkbox" + i;
         listItemBtn.appendChild(checkedImg);
-        //ADD EVENT LISTENER TO BUTTON
         listItemBtn.addEventListener("click", () => completeToDo(i));
 
         const listItemTextDiv = document.createElement("div");
@@ -107,13 +99,7 @@ function renderPage() {
         dateContainer.classList = "date-container";
         listItemTextDiv.appendChild(dateContainer);
 
-
-
-
-
         //Date
-
-
         const dateText = document.createElement("p");
         dateText.classList = "date";
         const dueDate = defaultProject.todoArr[i].taskDueDate;
@@ -150,14 +136,11 @@ function renderPage() {
 
         }
 
-
-
         listItemContainer.appendChild(listItemDiv);
 
         const horizRule = document.createElement("hr");
         listItemContainer.appendChild(horizRule);
 
-        // console.log("todoArr[" + i + "]" + defaultProject.todoArr[i].taskName.value);
 
     }
 

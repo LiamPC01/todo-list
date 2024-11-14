@@ -1,8 +1,6 @@
 import ToDo from './todo.js'
 import { getTodaysDate } from './utils.js';
 
-
-
 class Project {
     constructor(projectName) {
         this.projectName = projectName;
@@ -10,22 +8,19 @@ class Project {
     }
 
     createTodo(taskName, taskDesc, taskDueDate) {
-
-        //check form is valid
-        if (taskName.value != "") {
-
+        if (taskName.value != "") { //check form is valid
             if(!taskDueDate){
                 taskDueDate = getTodaysDate();
             }
-
-            //create todo class with data
-            const todo = new ToDo(taskName, taskDesc, taskDueDate);
-
-            //push object to todoArr
+            const date = new Date(taskDueDate);
+            const timestamp = date.getTime();
+            console.log("timestamp: " + timestamp);
+            const todo = new ToDo(taskName, taskDesc, taskDueDate, timestamp); 
             this.todoArr.push(todo);
-            // console.log(todo.taskName);
-            // console.log(todo.taskDesc);
-            console.log(todo.taskDueDate);
+            //sort todoArr by timestamp
+            this.todoArr.sort()
+            
+            
         }
 
     }

@@ -1,10 +1,11 @@
 
 
 class ToDo {
-    constructor(taskName, taskDesc, taskDueDate) {
+    constructor(taskName, taskDesc, taskDueDate, timestamp) {
         this.taskName = taskName;
         this.taskDesc = taskDesc;
         this.taskDueDate = taskDueDate;
+        this.timestamp = timestamp;
         
 
     }
