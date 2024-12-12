@@ -14,11 +14,9 @@ class Project {
             }
             const date = new Date(taskDueDate);
             const timestamp = date.getTime();
-            console.log("timestamp: " + timestamp);
             const todo = new ToDo(taskName, taskDesc, taskDueDate, timestamp); 
             this.todoArr.push(todo);
-            //sort todoArr by timestamp
-            this.todoArr.sort()
+            this.todoArr.sort((a,b) => a.timestamp - b.timestamp);
             
             
         }

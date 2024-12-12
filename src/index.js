@@ -1,18 +1,8 @@
-import setUpEventListeners from './dom.js'
-import Project from './project.js'
-// import handleSubmit from './dom.js'
+import {setUpEventListeners, selectInbox} from './dom.js'
 
-//create project PROJECT MODULE
-const defaultProject = new Project("defaultProject");
-
-//Render the page DOM MODULE 
-
-
-//Add event listeners DOM MODULE
 setUpEventListeners();
 
-//create Todo TODO MODULE
+selectInbox();
 
-//create project manager and switch projects PROJECT MANAGER MODULE
 
-export default defaultProject;
+
