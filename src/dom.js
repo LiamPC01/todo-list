@@ -103,9 +103,9 @@ function renderPage() {
     if (selectedProject.projectName == "inboxProject") {
         pageHead.textContent = "Inbox";
     } else if (selectedProject.projectName == "todayProject") {
-        pageHead.textContent = "Today";
+        pageHead.textContent = "Project 1";
     } else if (selectedProject.projectName == "upcomingProject") {
-        pageHead.textContent = "Upcoming";
+        pageHead.textContent = "Project 2";
     }
     
 
