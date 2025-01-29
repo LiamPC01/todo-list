@@ -2,12 +2,15 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 export function formatDate(taskDueDate) {
-    //format user inputted date in month day format 
-    const day = taskDueDate.substr(8, 2);
-    const monthNum = taskDueDate.substr(5, 2);
-    const month = months[monthNum - 1];
-    const formattedDate = month + " " + day;
-    return formattedDate;
+    if (taskDueDate) {
+        //format user inputted date in month day format 
+        const day = taskDueDate.substr(8, 2);
+        const monthNum = taskDueDate.substr(5, 2);
+        const month = months[monthNum - 1];
+        const formattedDate = month + " " + day;
+        return formattedDate;
+    }
+
 }
 
 export function getTodaysDate() {

@@ -4,5 +4,8 @@ setUpEventListeners();
 
 selectInbox();
 
+// localStorage.clear();
+
+
 
 

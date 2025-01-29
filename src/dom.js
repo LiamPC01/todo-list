@@ -1,6 +1,6 @@
+import { addTodo, deleteTodo, loadSelectedProject, saveSelectedProject } from './localStorage.js';
 import { selectedProject, inboxProject, todayProject, upcomingProject } from './projectManager.js'
 import { getTodaysDate, getTomorrowsDate, formatDate } from './utils.js';
-
 //Set up event listeners
 
 export function setUpEventListeners() {
@@ -22,24 +22,33 @@ export function setUpEventListeners() {
 }
 
 export function selectInbox() {
-    console.log("Inbox selected");
-    selectedProject.projectName = "inboxProject"
-    selectedProject.todoArr = inboxProject.todoArr;
-    renderPage();
+    if (selectedProject.projectName != "inboxProject") {
+        console.log("Inbox selected");
+        selectedProject.projectName = "inboxProject"
+        loadSelectedProject();
+        // selectedProject.todoArr = inboxProject.todoArr;
+        renderPage();
+    }
+
+
 }
 
 function selectToday() {
-    console.log("Today selected")
-    selectedProject.projectName = "todayProject"
-    selectedProject.todoArr = todayProject.todoArr;
-    renderPage();
+    if (selectedProject.projectName != "todayProject") {
+        console.log("Today selected")
+        selectedProject.projectName = "todayProject"
+        selectedProject.todoArr = todayProject.todoArr;
+        renderPage();
+    }
 }
 
 function selectUpcoming() {
-    console.log("Upcoming selected");
-    selectedProject.projectName = "upcomingProject"
-    selectedProject.todoArr = upcomingProject.todoArr;
-    renderPage();
+    if (selectedProject.projectName != "upcomingProject") {
+        console.log("Upcoming selected");
+        selectedProject.projectName = "upcomingProject"
+        selectedProject.todoArr = upcomingProject.todoArr;
+        renderPage();
+    }
 }
 
 function openAddTaskForm() {
@@ -65,15 +74,10 @@ function handleSubmit() {
 
     if (taskDueDate[5] == "0") {
         let newstring = taskDueDate.substring(0, 5) + taskDueDate.substring(6);
-        console.log("newstring: " + newstring);
     }
     if (taskDueDate[8] == "0") {
         let newstring = taskDueDate.substring(0, 8) + taskDueDate.substring(9);
-        console.log("newstring: " + newstring);
     }
-
-
-
 
     selectedProject.createTodo(taskName, taskDesc, taskDueDate);
     //close and reset the form
@@ -86,11 +90,17 @@ function handleSubmit() {
 }
 
 function completeToDo(i) {
+    console.log(selectedProject.todoArr[i].taskName);
+
     selectedProject.todoArr.splice(i, 1);
+    saveSelectedProject();
+
+    // deleteTodo(i);
+
     renderPage();
 }
 
-function renderPage() {
+export function renderPage() {
 
 
 
@@ -107,7 +117,7 @@ function renderPage() {
     } else if (selectedProject.projectName == "upcomingProject") {
         pageHead.textContent = "Project 2";
     }
-    
+
 
 
     listItemContainer.appendChild(pageHead);
@@ -163,7 +173,6 @@ function renderPage() {
         const dateText = document.createElement("p");
         dateText.classList = "date";
         const dueDate = selectedProject.todoArr[i].taskDueDate;
-        console.log(selectedProject.todoArr[i].taskName + " duedate: " + dueDate);
 
         if (getTodaysDate() == dueDate) {
             const dateImg = document.createElement("img");

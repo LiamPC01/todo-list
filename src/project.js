@@ -1,5 +1,6 @@
 import ToDo from './todo.js'
 import { getTodaysDate } from './utils.js';
+import { saveInbox, saveSelectedProject } from './localStorage.js';
 
 class Project {
     constructor(projectName) {
@@ -17,8 +18,13 @@ class Project {
             const todo = new ToDo(taskName, taskDesc, taskDueDate, timestamp); 
             this.todoArr.push(todo);
             this.todoArr.sort((a,b) => a.timestamp - b.timestamp);
+            // console.log(taskDueDate);
+
             
-            
+
+            //save inbox
+            saveSelectedProject();
+
         }
 
     }
