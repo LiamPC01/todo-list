@@ -10,7 +10,7 @@ export function saveSelectedProject() {
             localStorage.setItem(selectedProject.projectName + "TaskDesc[" + i + "]", selectedProject.todoArr[i].taskDesc);
             localStorage.setItem(selectedProject.projectName + "TaskDueDate[" + i + "]", selectedProject.todoArr[i].taskDueDate);
             localStorage.setItem(selectedProject.projectName + "Timestamp[" + i + "]", selectedProject.todoArr[i].timestamp);
-            console.log("Saving: " + localStorage.getItem(selectedProject.projectName + "TaskName[" + i + "]"));
+            // console.log("Saving: " + localStorage.getItem(selectedProject.projectName + "TaskName[" + i + "]"));
         }
         localStorage.setItem(selectedProject.projectName + "SelectedProjectSize", selectedProject.todoArr.length);
     } else { // if array is empty remove first element to save it as blank
@@ -19,7 +19,7 @@ export function saveSelectedProject() {
         localStorage.removeItem(selectedProject.projectName + "TaskDueDate[0]");
         localStorage.removeItem(selectedProject.projectName + "Timestamp[0]");
     }
-    console.log(selectedProject.todoArr.length);
+    // console.log(selectedProject.todoArr.length);
     // loadInbox();
 }
 
@@ -27,8 +27,8 @@ export function loadSelectedProject() {
 
     const selectedProjectSize = localStorage.getItem(selectedProject.projectName + "SelectedProjectSize");
 
-    for (let i = 0; i < selectedProjectSize; i++) {
-        if (localStorage.getItem(selectedProject.projectName + "TaskName[" + i + "]") != null) {
+    if (localStorage.getItem(selectedProject.projectName + "TaskName[0]") != null) {
+        for (let i = 0; i < selectedProjectSize; i++) {
             let taskName = localStorage.getItem(selectedProject.projectName + "TaskName[" + i + "]");
             let taskDesc = localStorage.getItem(selectedProject.projectName + "TaskDesc[" + i + "]");
             let taskDueDate = localStorage.getItem(selectedProject.projectName + "TaskDueDate[" + i + "]");
@@ -36,8 +36,12 @@ export function loadSelectedProject() {
 
             const todo = new ToDo(taskName, taskDesc, taskDueDate, timestamp);
             selectedProject.todoArr.push(todo);
-        }
 
+
+        }
+    } else {
+        // console.log(localStorage.getItem(selectedProject.projectName + "TaskName[0]") + " is null");
+        selectedProject.todoArr = [];
     }
 
 

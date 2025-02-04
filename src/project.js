@@ -14,6 +14,7 @@ class Project {
                 taskDueDate = getTodaysDate();
             }
             const date = new Date(taskDueDate);
+            // console.log(date.getDate());
             const timestamp = date.getTime();
             const todo = new ToDo(taskName, taskDesc, taskDueDate, timestamp); 
             this.todoArr.push(todo);

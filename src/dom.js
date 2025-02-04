@@ -1,6 +1,6 @@
 import { addTodo, deleteTodo, loadSelectedProject, saveSelectedProject } from './localStorage.js';
 import { selectedProject, inboxProject, todayProject, upcomingProject } from './projectManager.js'
-import { getTodaysDate, getTomorrowsDate, formatDate } from './utils.js';
+import { getTodaysDate, getTomorrowsDate, formatDate, cleanDate } from './utils.js';
 //Set up event listeners
 
 export function setUpEventListeners() {
@@ -24,20 +24,21 @@ export function setUpEventListeners() {
 export function selectInbox() {
     if (selectedProject.projectName != "inboxProject") {
         console.log("Inbox selected");
-        selectedProject.projectName = "inboxProject"
+        saveSelectedProject();
+        selectedProject.todoArr = [];
+        selectedProject.projectName = "inboxProject";
         loadSelectedProject();
-        // selectedProject.todoArr = inboxProject.todoArr;
         renderPage();
     }
-
-
 }
 
 function selectToday() {
     if (selectedProject.projectName != "todayProject") {
         console.log("Today selected")
+        saveSelectedProject();
+        selectedProject.todoArr = [];
         selectedProject.projectName = "todayProject"
-        selectedProject.todoArr = todayProject.todoArr;
+        loadSelectedProject();
         renderPage();
     }
 }
@@ -45,8 +46,10 @@ function selectToday() {
 function selectUpcoming() {
     if (selectedProject.projectName != "upcomingProject") {
         console.log("Upcoming selected");
+        saveSelectedProject();
+        selectedProject.todoArr = [];
         selectedProject.projectName = "upcomingProject"
-        selectedProject.todoArr = upcomingProject.todoArr;
+        loadSelectedProject();
         renderPage();
     }
 }
@@ -67,18 +70,6 @@ function handleSubmit() {
     const taskDesc = document.getElementById("form-task-description").value;
     const taskDueDate = document.getElementById("form-task-date").value;
 
-    //date format 2025-01-05
-    //loop through string
-    //check if i5 and i8 are 0
-    //if yes then remove them
-
-    if (taskDueDate[5] == "0") {
-        let newstring = taskDueDate.substring(0, 5) + taskDueDate.substring(6);
-    }
-    if (taskDueDate[8] == "0") {
-        let newstring = taskDueDate.substring(0, 8) + taskDueDate.substring(9);
-    }
-
     selectedProject.createTodo(taskName, taskDesc, taskDueDate);
     //close and reset the form
 
@@ -90,7 +81,7 @@ function handleSubmit() {
 }
 
 function completeToDo(i) {
-    console.log(selectedProject.todoArr[i].taskName);
+    // console.log(selectedProject.todoArr[i].taskName);
 
     selectedProject.todoArr.splice(i, 1);
     saveSelectedProject();
@@ -101,8 +92,6 @@ function completeToDo(i) {
 }
 
 export function renderPage() {
-
-
 
     const listItemContainer = document.getElementById("list-item-container");
     //clear the page
@@ -169,12 +158,19 @@ export function renderPage() {
         dateContainer.classList = "date-container";
         listItemTextDiv.appendChild(dateContainer);
 
-        //Date
+
+
+
+
+        //DATE
         const dateText = document.createElement("p");
         dateText.classList = "date";
-        const dueDate = selectedProject.todoArr[i].taskDueDate;
+        //remove 0's from dueDate
+        const dueDate = selectedProject.todoArr[i].taskDueDate;  
+        // console.log("dueDate: " + dueDate);
+        // console.log("getTodaysDate: " + getTodaysDate());
 
-        if (getTodaysDate() == dueDate) {
+        if (getTodaysDate() == dueDate) { 
             const dateImg = document.createElement("img");
             dateImg.src = "./media/calendar-today.svg";
 
@@ -197,7 +193,9 @@ export function renderPage() {
             dateImg.src = "./media/calendar-late.svg";
             dateContainer.appendChild(dateImg);
 
-            const dateTextNode = document.createTextNode(formatDate(selectedProject.todoArr[i].taskDueDate));
+            // console.log(formatDate(selectedProject.todoArr[i].taskDueDate));
+
+            const dateTextNode = document.createTextNode(formatDate(dueDate));
             dateText.appendChild(dateTextNode);
             dateContainer.appendChild(dateText);
             dateText.classList = "date due-late";
@@ -207,12 +205,19 @@ export function renderPage() {
             dateImg.src = "./media/calendar-future.svg";
             dateContainer.appendChild(dateImg);
 
-            const dateTextNode = document.createTextNode(formatDate(selectedProject.todoArr[i].taskDueDate));
+            const dateTextNode = document.createTextNode(formatDate(dueDate));
             dateText.appendChild(dateTextNode);
             dateContainer.appendChild(dateText);
             dateText.classList = "date due-tomorrow";
 
         }
+
+
+
+
+
+
+
 
         listItemContainer.appendChild(listItemDiv);
 
