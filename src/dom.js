@@ -1,4 +1,4 @@
-import { addTodo, deleteTodo, loadSelectedProject, saveSelectedProject } from './localStorage.js';
+import { removeToDoFromStorage, loadSelectedProject, saveSelectedProject } from './localStorage.js';
 import { selectedProject, inboxProject, todayProject, upcomingProject } from './projectManager.js'
 import { getTodaysDate, getTomorrowsDate, formatDate, cleanDate } from './utils.js';
 //Set up event listeners
@@ -12,43 +12,33 @@ export function setUpEventListeners() {
     form.addEventListener("submit", handleSubmit);
 
     const inboxBtn = document.getElementById("inbox-btn");
-    inboxBtn.addEventListener("click", selectInbox);
+    inboxBtn.addEventListener("click", selectProject);
 
     const todayBtn = document.getElementById("today-btn");
-    todayBtn.addEventListener("click", selectToday);
+    todayBtn.addEventListener("click", selectProject);
 
     const upcomingBtn = document.getElementById("upcoming-btn");
-    upcomingBtn.addEventListener("click", selectUpcoming);
+    upcomingBtn.addEventListener("click", selectProject);
 }
 
 export function selectInbox() {
-    if (selectedProject.projectName != "inboxProject") {
+    if (selectedProject.projectName != "Inbox") {
         console.log("Inbox selected");
         saveSelectedProject();
         selectedProject.todoArr = [];
-        selectedProject.projectName = "inboxProject";
+        selectedProject.projectName = "Inbox";
         loadSelectedProject();
         renderPage();
     }
 }
 
-function selectToday() {
-    if (selectedProject.projectName != "todayProject") {
-        console.log("Today selected")
-        saveSelectedProject();
-        selectedProject.todoArr = [];
-        selectedProject.projectName = "todayProject"
-        loadSelectedProject();
-        renderPage();
-    }
-}
-
-function selectUpcoming() {
-    if (selectedProject.projectName != "upcomingProject") {
-        console.log("Upcoming selected");
-        saveSelectedProject();
-        selectedProject.todoArr = [];
-        selectedProject.projectName = "upcomingProject"
+function selectProject(event) {
+    const button = event.target.closest("button");
+    const projectName = button.querySelector(".side-panel-btn-label").textContent;
+    if(selectedProject.projectName != projectName) { // makes sure not to load a project that is already loaded
+        saveSelectedProject()
+        selectedProject.todoArr = []; // empty project array before loading new todos
+        selectedProject.projectName = projectName;
         loadSelectedProject();
         renderPage();
     }
@@ -81,14 +71,10 @@ function handleSubmit() {
 }
 
 function completeToDo(i) {
-    // console.log(selectedProject.todoArr[i].taskName);
-
     selectedProject.todoArr.splice(i, 1);
+    removeToDoFromStorage(i);
     saveSelectedProject();
-
-    // deleteTodo(i);
-
-    renderPage();
+    renderPage();    
 }
 
 export function renderPage() {
@@ -99,13 +85,14 @@ export function renderPage() {
 
     const pageHead = document.createElement("h2");
     pageHead.id = "pageHeader";
-    if (selectedProject.projectName == "inboxProject") {
-        pageHead.textContent = "Inbox";
-    } else if (selectedProject.projectName == "todayProject") {
-        pageHead.textContent = "Project 1";
-    } else if (selectedProject.projectName == "upcomingProject") {
-        pageHead.textContent = "Project 2";
-    }
+    pageHead.textContent = selectedProject.projectName;
+    // if (selectedProject.projectName == "inboxProject") {
+    //     pageHead.textContent = "Inbox";
+    // } else if (selectedProject.projectName == "todayProject") {
+    //     pageHead.textContent = "Project 1";
+    // } else if (selectedProject.projectName == "upcomingProject") {
+    //     pageHead.textContent = "Project 2";
+    // }
 
 
 
@@ -117,7 +104,7 @@ export function renderPage() {
     //loop through default projects todoArr
     //create html elements with the data in the todoArr
 
-    for (let i = 0; i < selectedProject.todoArr.length; i++) {
+    for (let i = 0; i < selectedProject.todoArr.length; i++) { //render todos in selected project
 
         const listItemDiv = document.createElement("div");
         listItemDiv.classList = "list-item";
@@ -158,14 +145,9 @@ export function renderPage() {
         dateContainer.classList = "date-container";
         listItemTextDiv.appendChild(dateContainer);
 
-
-
-
-
         //DATE
         const dateText = document.createElement("p");
         dateText.classList = "date";
-        //remove 0's from dueDate
         const dueDate = selectedProject.todoArr[i].taskDueDate;  
         // console.log("dueDate: " + dueDate);
         // console.log("getTodaysDate: " + getTodaysDate());
@@ -211,12 +193,6 @@ export function renderPage() {
             dateText.classList = "date due-tomorrow";
 
         }
-
-
-
-
-
-
 
 
         listItemContainer.appendChild(listItemDiv);
