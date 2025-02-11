@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-size: 18px;
+    font-size: 22px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100vh;
     background-color: #1e1e1e;
@@ -52,6 +52,7 @@ button {
     border-radius: 5px;
     color: #FFFFFF;
     padding: 5px;
+    font-size: 18px;
 }
 
 .side-panel-btn:hover {
@@ -140,19 +141,19 @@ button {
 .list-item-title {
     margin-bottom: 0px;
     /* color: #ffffff; */
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .list-item-description{
     color: #cccccc;
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 16px;
     
 }
 
 .date {
-    font-size: 12px;
+    font-size: 16px;
     margin: 0px;
     
 }
@@ -263,12 +264,12 @@ input::placeholder {
 
 #form-task-name {
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 24px;
     /* color: #FFFFFF; */
 }
 
 #form-task-description {
-    font-size: 13px;
+    font-size: 17px;
     padding-top:10px;
     padding-bottom:15px;
 }
