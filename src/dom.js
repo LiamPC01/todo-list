@@ -1,6 +1,7 @@
 import { removeToDoFromStorage, loadSelectedProject, saveSelectedProject } from './localStorage.js';
 import { selectedProject, inboxProject, todayProject, upcomingProject } from './projectManager.js'
 import { getTodaysDate, getTomorrowsDate, formatDate, cleanDate } from './utils.js';
+import { gainXP } from './xp.js';
 //Set up event listeners
 
 export function setUpEventListeners() {
@@ -72,6 +73,7 @@ function handleSubmit() {
 
 function completeToDo(i) {
     selectedProject.todoArr.splice(i, 1);
+    gainXP(25);
     removeToDoFromStorage(i);
     saveSelectedProject();
     renderPage();    

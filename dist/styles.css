@@ -15,19 +15,19 @@ body {
 
 #side-panel {
     width: 280px;
-    height:100%;
+    height: 100%;
     /* background-color: rgb(250, 240, 240); */
     background-color: #262626;
-    padding-left: 16px; 
+    padding-left: 16px;
     padding-right: 16px;
-    
+
 }
 
 #side-panel-header {
     display: flex;
     align-items: center;
     padding-top: 5px;
-    
+
 }
 
 #side-panel-header-username {
@@ -102,11 +102,12 @@ button {
     opacity: 0;
 }
 
-.check-btn:hover .unchecked{
+.check-btn:hover .unchecked {
     opacity: 0;
     cursor: pointer;
 }
-.check-btn:hover .checked{
+
+.check-btn:hover .checked {
     opacity: 1;
 }
 
@@ -144,38 +145,39 @@ button {
     font-size: 18px;
 }
 
-.list-item-description{
+.list-item-description {
     color: #cccccc;
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 16px;
-    
+
 }
 
 .date {
     font-size: 16px;
     margin: 0px;
-    
+
 }
 
 .date-container {
     display: flex;
     align-items: center;
-    margin-left: -2px; /* to align nicely with description and title */
+    margin-left: -2px;
+    /* to align nicely with description and title */
     margin-top: 5px;
-    
-    
+
+
 }
 
-.due-today{
+.due-today {
     color: #25B84C;
 }
 
-.due-tomorrow{
+.due-tomorrow {
     color: #ff9a14;
 }
 
-.due-late{
+.due-late {
     color: #ff7066;
 }
 
@@ -192,11 +194,11 @@ button {
     cursor: pointer;
 }
 
-#add-task-btn:hover .add-task-unhover{
+#add-task-btn:hover .add-task-unhover {
     opacity: 0;
 }
 
-#add-task-btn:hover .add-task-hover{
+#add-task-btn:hover .add-task-hover {
     opacity: 1;
 }
 
@@ -204,7 +206,7 @@ button {
     position: absolute;
 }
 
-.add-task-hover{ 
+.add-task-hover {
     opacity: 0;
     /* width: 24px; */
     /* height: 24px; */
@@ -230,7 +232,7 @@ dialog {
 }
 
 input {
-    border:none;
+    border: none;
     padding: 5px;
     background-color: #1e1e1e;
     color: #FFFFFF;
@@ -247,11 +249,11 @@ input::placeholder {
 
 
 #add-task-window {
-    display:flex;
+    display: flex;
     flex-direction: column;
     width: 500px;
     height: 150px;
-    
+
     /* padding: 10px; */
 }
 
@@ -270,8 +272,8 @@ input::placeholder {
 
 #form-task-description {
     font-size: 17px;
-    padding-top:10px;
-    padding-bottom:15px;
+    padding-top: 10px;
+    padding-bottom: 15px;
 }
 
 #form-task-date {
@@ -283,11 +285,11 @@ input::placeholder {
 
 
 
-#form-date-btn{
+#form-date-btn {
     display: flex;
     align-items: center;
-    border:solid grey 1px;
-    width:100px;
+    border: solid grey 1px;
+    width: 100px;
     border-radius: 10px;
 }
 
@@ -299,7 +301,7 @@ hr {
 #add-task-footer {
     display: flex;
     justify-content: space-between;
-    
+
     background-color: #202020;
     /* border: solid 2px grey; */
     padding: 20px;
@@ -355,3 +357,17 @@ hr {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+#xp-container {
+    width: 80%;
+    height: 16px;
+    border: solid black 3px;
+}
+
+#xp {
+    width: 0%;
+    height: 16px;
+    background: linear-gradient(to right, #8A2BE2, #9400D3); 
+    transition: width 0.5s ease-in-out;
+}
+
