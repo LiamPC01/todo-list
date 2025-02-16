@@ -1,5 +1,6 @@
 import { selectedProject } from './projectManager.js'
 import ToDo from './todo.js';
+import { getLevel } from './xp.js';
 
 //Call when a todo is created
 export function saveSelectedProject() {
@@ -42,5 +43,47 @@ export function removeToDoFromStorage(i) {
     localStorage.removeItem(selectedProject.projectName + "TaskDueDate[" + i + "]");
     localStorage.removeItem(selectedProject.projectName + "Timestamp[" + i + "]");
 }
+
+export function saveXP(amount) {
+    localStorage.setItem("xp", amount);
+}
+
+export function saveLevel(amount) {
+    localStorage.setItem("level", amount);
+}
+
+export function loadLevel() {
+    let levelString = localStorage.getItem("level");
+    let level = Number(levelString);
+
+    if(level) {
+        return level;
+    }
+    else {
+        return 1;
+    }  
+}
+
+export function loadXP() {
+    let xpString = localStorage.getItem("xp");
+    let xp = Number(xpString);
+
+    if(xp) {
+        return xp;
+    }
+    else {
+        return 0;
+    }  
+}
+
+// export function loadXP() {
+//     let xpString = localStorage.getItem("levelXP");
+//     let xp = Number(xpString);
+
+//     return xp;
+// }
+
+
+
 
 
