@@ -11,6 +11,7 @@ body {
     display: flex;
     height: 100%;
     position: relative;
+
 }
 
 #side-panel {
@@ -229,6 +230,12 @@ dialog {
     border-radius: 10px;
     top: 15%;
     width: 500px;
+    z-index: 9999;
+}
+
+#welcome-dialog {
+    height: 50%;
+    width: 20%;
 }
 
 input {
@@ -368,7 +375,68 @@ hr {
 #xp {
     width: 0%;
     height: 16px;
-    background: linear-gradient(to right, #8A2BE2, #9400D3); 
+    background: linear-gradient(to right, #8A2BE2, #9400D3);
     transition: width 0.5s ease-in-out;
 }
 
+#welcome-text {
+    color: white;
+    font-size: xx-large;
+}
+
+#welcome-window {
+    /* justify-self: center; */
+    justify-items: center;
+    /* background-color: red; */
+
+}
+
+#welcome-profile-pic {
+    border-radius: 50px;
+    width: 100px;
+    padding: 2px;
+    margin-bottom: 32px;
+}
+
+#username-label {
+    color: white;
+    font-size: large;
+    padding-bottom: 12px;
+}
+
+#username-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-username {
+    margin-bottom: 12px;
+}
+
+#form-username:focus {
+    /* outline: #FFFFFF; */
+    border: 1px solid white;
+    /* background-color: red; */
+}
+
+#submit-username-btn {
+    border-radius: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #de4c4a;
+    color: #e4e4e4;
+}
+
+#submit-username-btn:hover {
+    cursor: pointer;
+    background-color: #e36564;
+    color: #e4e4e4;
+}
+
+.blur {
+    filter: blur(10px);
+    opacity: 0.5; /* Slight dimming effect */
+    pointer-events: none; /* Prevent interaction with background */
+}
