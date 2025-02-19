@@ -2,6 +2,8 @@ import { selectedProject } from './projectManager.js'
 import ToDo from './todo.js';
 import { getLevel } from './xp.js';
 
+let username = "";
+
 //Call when a todo is created
 export function saveSelectedProject() {
     if (selectedProject.todoArr.length > 0) { // save todos if array is not empty
@@ -82,6 +84,20 @@ export function loadXP() {
 
 //     return xp;
 // }
+
+export function getUsername() {
+    username = localStorage.getItem("username");
+    if(username) {
+        return username;
+    }
+    else {
+        console.log(username);
+    }
+}
+
+export function saveUsername(username) {
+    localStorage.setItem("username", username);
+}
 
 
 

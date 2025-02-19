@@ -1,7 +1,7 @@
-import {setUpEventListeners, selectInbox, renderLevel} from './dom.js'
+import {setUpEventListeners, selectInbox, renderLevel, welcomePrompt} from './dom.js'
 import {level, currentXP} from './xp.js'
 
-
+welcomePrompt();
 
 setUpEventListeners();
 

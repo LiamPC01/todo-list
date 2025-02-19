@@ -22,10 +22,10 @@ export function gainXP(amount) {
                 saveLevel(level);
                 renderLevel(level, currentXP);
 
-            }, 1000); // 1 second delay before resetting
+            }, 2000); // 1 second delay before resetting
             setTimeout(() => { // another delay so that the xp goes back to 0, then goes to where it should be
                 xpBar.style.width = currentXP + "%";
-            }, 2000);
+            }, 4000);
         }
 
 

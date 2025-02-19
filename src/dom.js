@@ -1,8 +1,7 @@
-import { removeToDoFromStorage, loadSelectedProject, saveSelectedProject } from './localStorage.js';
-import { selectedProject} from './projectManager.js'
-import { getTodaysDate, getTomorrowsDate, formatDate, cleanDate } from './utils.js';
+import { removeToDoFromStorage, loadSelectedProject, saveSelectedProject, getUsername, saveUsername } from './localStorage.js';
+import { selectedProject } from './projectManager.js'
+import { getTodaysDate, getTomorrowsDate, formatDate } from './utils.js';
 import { gainXP } from './xp.js';
-//Set up event listeners
 
 export function setUpEventListeners() {
     const addTaskBtn = document.getElementById("add-task-btn");
@@ -20,6 +19,9 @@ export function setUpEventListeners() {
 
     const upcomingBtn = document.getElementById("upcoming-btn");
     upcomingBtn.addEventListener("click", selectProject);
+
+    const submitUsernameBtn = document.getElementById("submit-username-btn");
+    submitUsernameBtn.addEventListener("click", handleNameSubmit);
 }
 
 export function selectInbox() {
@@ -36,7 +38,7 @@ export function selectInbox() {
 function selectProject(event) {
     const button = event.target.closest("button");
     const projectName = button.querySelector(".side-panel-btn-label").textContent;
-    if(selectedProject.projectName != projectName) { // makes sure not to load a project that is already loaded
+    if (selectedProject.projectName != projectName) { // makes sure not to load a project that is already loaded
         saveSelectedProject()
         selectedProject.todoArr = []; // empty project array before loading new todos
         selectedProject.projectName = projectName;
@@ -49,11 +51,13 @@ function openAddTaskForm() {
     document.getElementById("add-task-dialog").open = true;
     const taskNameField = document.getElementById("form-task-name");
     taskNameField.focus();
+    page.classList.add("blur");
 }
 
 function cancelAddTask() {
     document.getElementById("add-task-dialog").open = false;
     document.getElementById("add-task-form").reset();
+    page.classList.remove("blur");
 }
 
 function handleSubmit() {
@@ -69,6 +73,8 @@ function handleSubmit() {
     document.getElementById("add-task-form").reset();
     document.getElementById("add-task-dialog").open = false;
 
+    page.classList.remove("blur");
+
 }
 
 function completeToDo(i) {
@@ -76,7 +82,7 @@ function completeToDo(i) {
     gainXP(30);
     removeToDoFromStorage(i);
     saveSelectedProject();
-    renderPage();    
+    renderPage();
 }
 
 export function renderLevel(level, currentXP) {
@@ -161,11 +167,11 @@ export function renderPage() {
         //DATE
         const dateText = document.createElement("p");
         dateText.classList = "date";
-        const dueDate = selectedProject.todoArr[i].taskDueDate;  
+        const dueDate = selectedProject.todoArr[i].taskDueDate;
         // console.log("dueDate: " + dueDate);
         // console.log("getTodaysDate: " + getTodaysDate());
 
-        if (getTodaysDate() == dueDate) { 
+        if (getTodaysDate() == dueDate) {
             const dateImg = document.createElement("img");
             dateImg.src = "./media/calendar-today.svg";
 
@@ -215,6 +221,32 @@ export function renderPage() {
 
 
     }
+
+}
+
+export function welcomePrompt() {
+    if (!getUsername()) { // if no user name open welcome dialog window
+        document.getElementById("welcome-dialog").open = true;
+        const page = document.getElementById("page");
+        page.classList.add("blur");
+    }
+    else {
+        const sidePanelName = document.getElementById("side-panel-header-username");
+        sidePanelName.textContent = getUsername();
+        page.classList.remove("blur");
+    }
+}
+
+function handleNameSubmit() {
+    const name = document.getElementById("form-username").value;
+    if (name) {
+        saveUsername(name);
+        document.getElementById("welcome-dialog").open = false;
+        page.classList.remove("blur");
+    }
+
+    const sidePanelName = document.getElementById("side-panel-header-username");
+    sidePanelName.textContent = name;
 
 }
 
