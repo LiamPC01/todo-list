@@ -1,13 +1,15 @@
-import { renderLevel, updateLevel } from "./dom";
+import { playGainingXPSound, playLevelUpSound } from "./audio";
+import { blurPage, renderLevel, updateLevel } from "./dom";
 import { saveXP, saveLevel, loadXP, loadLevel } from "./localStorage";
-
 
 export let currentXP = loadXP();
 export let level = loadLevel();
 
+const xpBar = document.querySelector("#xp");
+
 export function gainXP(amount) {
-    let xpBar = document.querySelector("#xp");
-    
+playGainingXPSound();
+
     if (currentXP + amount == 100 || currentXP + amount > 100) { // if level up
         //Level up
         currentXP = (currentXP + amount) - 100; // the extra xp
@@ -16,16 +18,12 @@ export function gainXP(amount) {
 
         //after the bar animation has reached 100%
         if (xpBar.style.width == "100%") {
-            setTimeout(() => {
-                xpBar.style.width = "0%";
-                level = level + 1;
-                saveLevel(level);
-                renderLevel(level, currentXP);
+            document.getElementById("levelup-dialog").open = true;
+            blurPage();
+            playLevelUpSound();
 
-            }, 2000); // 1 second delay before resetting
-            setTimeout(() => { // another delay so that the xp goes back to 0, then goes to where it should be
-                xpBar.style.width = currentXP + "%";
-            }, 4000);
+            // resetXP(currentXP);
+
         }
 
 
@@ -47,6 +45,18 @@ export function getLevel() {
     return level;
 }
 
-// export function getXP() {
-//     return currentXP;
-// }
+export function resetXP() {
+
+    level = level + 1;
+    saveLevel(level);
+    renderLevel(level, currentXP);
+
+    xpBar.style.width = "0%";
+
+    setTimeout(() => {
+        xpBar.style.width = currentXP + "%";
+    }, 1000);
+
+    // console.log(overflowXP);
+
+}

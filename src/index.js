@@ -9,7 +9,7 @@ selectInbox();
 
 renderLevel(level, currentXP);
 
-// localStorage.clear();
+localStorage.clear();
 
 
 

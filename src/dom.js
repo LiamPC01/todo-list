@@ -1,7 +1,8 @@
+import { playcheckboxSound } from './audio.js';
 import { removeToDoFromStorage, loadSelectedProject, saveSelectedProject, getUsername, saveUsername } from './localStorage.js';
 import { selectedProject } from './projectManager.js'
 import { getTodaysDate, getTomorrowsDate, formatDate } from './utils.js';
-import { gainXP } from './xp.js';
+import { gainXP, resetXP } from './xp.js';
 
 export function setUpEventListeners() {
     const addTaskBtn = document.getElementById("add-task-btn");
@@ -22,6 +23,9 @@ export function setUpEventListeners() {
 
     const submitUsernameBtn = document.getElementById("submit-username-btn");
     submitUsernameBtn.addEventListener("click", handleNameSubmit);
+
+    const levelupContinueBtn = document.getElementById("levelup-continue-btn");
+    levelupContinueBtn.addEventListener("click", closeLevelWindow);
 }
 
 export function selectInbox() {
@@ -51,13 +55,13 @@ function openAddTaskForm() {
     document.getElementById("add-task-dialog").open = true;
     const taskNameField = document.getElementById("form-task-name");
     taskNameField.focus();
-    page.classList.add("blur");
+    blurPage();
 }
 
 function cancelAddTask() {
     document.getElementById("add-task-dialog").open = false;
     document.getElementById("add-task-form").reset();
-    page.classList.remove("blur");
+    removeBlurPage();
 }
 
 function handleSubmit() {
@@ -73,7 +77,7 @@ function handleSubmit() {
     document.getElementById("add-task-form").reset();
     document.getElementById("add-task-dialog").open = false;
 
-    page.classList.remove("blur");
+    removeBlurPage();
 
 }
 
@@ -83,6 +87,7 @@ function completeToDo(i) {
     removeToDoFromStorage(i);
     saveSelectedProject();
     renderPage();
+    playcheckboxSound();
 }
 
 export function renderLevel(level, currentXP) {
@@ -228,12 +233,14 @@ export function welcomePrompt() {
     if (!getUsername()) { // if no user name open welcome dialog window
         document.getElementById("welcome-dialog").open = true;
         const page = document.getElementById("page");
-        page.classList.add("blur");
+        blurPage();
+        const usernameInput = document.getElementById("form-username");
+        usernameInput.focus();
     }
     else {
         const sidePanelName = document.getElementById("side-panel-header-username");
         sidePanelName.textContent = getUsername();
-        page.classList.remove("blur");
+        removeBlurPage();
     }
 }
 
@@ -242,7 +249,7 @@ function handleNameSubmit() {
     if (name) {
         saveUsername(name);
         document.getElementById("welcome-dialog").open = false;
-        page.classList.remove("blur");
+        removeBlurPage();
     }
 
     const sidePanelName = document.getElementById("side-panel-header-username");
@@ -250,3 +257,16 @@ function handleNameSubmit() {
 
 }
 
+export function blurPage() {
+    page.classList.add("blur");
+}
+
+export function removeBlurPage() {
+    page.classList.remove("blur");
+}
+
+function closeLevelWindow() {
+    document.getElementById("levelup-dialog").open = false;
+    removeBlurPage();
+    resetXP();
+}
