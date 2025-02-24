@@ -73,7 +73,7 @@
                 <div id="add-task-footer">
                     <div id="submit-btn-container">
                         <button type="button" id="cancel-add-task-btn">Cancel</button>
-                        <button type="submit" id="submit-add-task-btn">Add task</button>
+                        <button type="submit" id="submit-add-task-btn" class="submit-btn">Add task</button>
                         <!-- change to button rather than submit  -->
                     </div>
                 </div>
@@ -88,9 +88,17 @@
             <form id="username-form" onsubmit="return false">
                 <label id="username-label" for="username">Please enter your name:</label>
                 <input required type="text" name="username" placeholder="Name" id="form-username">
-                <button type="submit" id="submit-username-btn">Submit</button>
+                <button type="submit" id="submit-username-btn" class="submit-btn">Submit</button>
             </form>
 
+        </div>
+    </dialog>
+
+    <dialog  id="levelup-dialog">
+        <div id="levelup-window">
+            <p id="levelup-text">LEVEL UP</p>
+            <p id="levelupDescription"></p>
+            <button id="levelup-continue-btn" class="submit-btn">Continue</button>
         </div>
     </dialog>
 

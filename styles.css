@@ -335,22 +335,6 @@ hr {
     color: #e4e4e4;
 }
 
-#submit-add-task-btn {
-    border-radius: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: #de4c4a;
-    color: #e4e4e4;
-}
-
-#submit-add-task-btn:hover {
-    cursor: pointer;
-    background-color: #e36564;
-    color: #e4e4e4;
-}
-
 #add-task-dialog {
     background-color: #1e1e1e;
     padding: 0px;
@@ -376,7 +360,7 @@ hr {
     width: 0%;
     height: 16px;
     background: linear-gradient(to right, #8A2BE2, #9400D3);
-    transition: width 0.5s ease-in-out;
+    transition: width 1.5s linear;
 }
 
 #welcome-text {
@@ -419,7 +403,7 @@ hr {
     /* background-color: red; */
 }
 
-#submit-username-btn {
+.submit-btn {
     border-radius: 5px;
     padding-right: 10px;
     padding-left: 10px;
@@ -429,7 +413,7 @@ hr {
     color: #e4e4e4;
 }
 
-#submit-username-btn:hover {
+.submit-btn:hover {
     cursor: pointer;
     background-color: #e36564;
     color: #e4e4e4;
@@ -439,4 +423,15 @@ hr {
     filter: blur(10px);
     opacity: 0.5; /* Slight dimming effect */
     pointer-events: none; /* Prevent interaction with background */
+}
+
+#levelup-window {
+    display: flex;
+    flex-direction: column;
+    /* justify-items: center; */
+    align-items: center;
+}
+
+#levelup-text {
+    color: white;
 }
